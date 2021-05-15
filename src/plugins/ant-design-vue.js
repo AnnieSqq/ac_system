@@ -17,7 +17,10 @@ import {
   Table,
   Descriptions,
   List,
-  Popconfirm
+  Popconfirm,
+  message,
+  PageHeader,
+  Result
 } from 'ant-design-vue'
 
 Vue.component(LocaleProvider.name, LocaleProvider)
@@ -44,3 +47,6 @@ Vue.component(Descriptions.Item.name, Descriptions.Item)
 Vue.component(List.name, List)
 Vue.component(List.Item.name, List.Item)
 Vue.component(Popconfirm.name, Popconfirm)
+Vue.component(PageHeader.name, PageHeader)
+Vue.component(Result.name, Result)
+Vue.prototype.$message = message

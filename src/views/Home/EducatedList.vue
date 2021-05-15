@@ -1,7 +1,7 @@
 <template>
   <div class="edu_list_outer">
     <!-- 搜索栏 -->
-    <a-row class="search_row" type="flex" justify="space-between">
+    <!-- <a-row class="search_row" type="flex" justify="space-between">
       <a-col :span="3"><a-input placeholder="姓名"></a-input></a-col>
       <a-col :span="5"><a-input placeholder="身份证号"></a-input></a-col>
       <a-col :span="3">
@@ -13,15 +13,19 @@
       <a-col :span="3"><a-button type="primary">检索</a-button></a-col>
       <a-col :span="3"><a-button type="default">取消</a-button></a-col>
       <a-col :span="6"></a-col>
-    </a-row>
+    </a-row> -->
+    <a-card
+      style="border: 1px solid rgb(235, 237, 240);"
+      title="受教育者列表"
+    />
     <!-- 统计栏 -->
     <a-row style="padding: 16px 0">
-      <a-col :span="6"><a-tag color="blue">总计：1456</a-tag></a-col>
+      <a-col :span="6"><a-tag color="blue">总计：{{eduList.length}}</a-tag></a-col>
     </a-row>
     <!-- 表格 -->
     <div style="background-color: #fff">
       <a-table
-        rowKey="id_num"
+        rowKey="educatedId"
         :columns="eduListCols"
         :data-source="eduList"
         bordered
@@ -29,62 +33,54 @@
         :customRow="customRowFunc"
       ></a-table>
     </div>
+    <!-- 表格底栏 -->
     <a-row class="footer_row">
-      <a-col :span="3"><a-button type="primary">批量颁发</a-button></a-col>
-      <a-col :span="3"><a-button type="default">批量删除</a-button></a-col>
+      <!-- <a-col :span="3"><a-button type="primary">批量颁发</a-button></a-col>
+      <a-col :span="3"><a-button type="default">批量删除</a-button></a-col> -->
       <a-col :span="18">
-        <a-pagination show-quick-jumper :default-current="2" :total="500" />
+        <a-pagination show-quick-jumper :default-current="2" :total="eduList.length" />
       </a-col>
     </a-row>
   </div>
 </template>
 
 <script>
+import { getEducatedList } from '@/api'
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
+      // 受教育者表格列信息
       eduListCols: [
         {
           title: 'id',
-          dataIndex: 'id_num',
+          dataIndex: 'educatedId',
           width: '30%'
-          //   scopedSlots: { customRender: 'id_num' }
         },
         {
           title: '姓名',
-          dataIndex: 'name',
+          dataIndex: 'username',
           width: '20%'
-          //   scopedSlots: { customRender: 'name' }
         },
         {
-          title: '本校学历',
-          dataIndex: 'this_school_edu',
+          title: '身份证号',
+          dataIndex: 'identity',
           width: '20%'
-          //   scopedSlots: { customRender: 'this_school_edu' }
         },
         {
-          title: '毕业时间',
-          dataIndex: 'graduate_time'
-          //   scopedSlots: { customRender: 'graduate_time' }
+          title: '所属院校',
+          dataIndex: 'educatorName'
         }
       ],
-      eduList: [
-        {
-          id_num: '1345678913',
-          name: '张三',
-          this_school_edu: '本科',
-          graduate_time: '2020-02-02'
-        },
-        {
-          id_num: '1345678945',
-          name: '李四',
-          this_school_edu: '本科',
-          graduate_time: '2020-02-02'
-        }
-      ]
+      // 受教育者列表
+      eduList: []
     }
   },
+  computed: {
+    ...mapState(['adminInfo'])
+  },
   methods: {
+    // 表格行的处理函数
     customRowFunc(record, index) {
       const that = this
       return {
@@ -94,12 +90,25 @@ export default {
             that.$router.push({
               path: '/educated_info',
               query: {
-                id_num: record.id_num
+                educatedId: record.educatedId
               }
             })
           }
         }
       }
+    },
+    // 获取受教育者列表
+    async getEduList() {
+      const res = await getEducatedList(this.$store.state.adminInfo.id)
+      this.eduList = res.data.data
+    }
+  },
+  mounted() {
+    this.getEduList()
+  },
+  watch: {
+    adminInfo(newval, oldval) {
+      this.getEduList()
     }
   }
 }

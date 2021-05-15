@@ -1,12 +1,8 @@
 <template>
   <div>
-    <a-page-header
-      :title="pageTitle"
-    />
-    <a-list
-      :grid="{ gutter: 16, xxl: 3, xl: 2, xs: 2 }"
-      :data-source="courceList"
-    >
+    <a-page-header title="学习认证" :sub-title="pageTitle" @back="$router.go(-1)" />
+
+    <a-list :grid="{ gutter: 16, span: 1 }" :data-source="courceList">
       <a-list-item slot="renderItem" slot-scope="item">
         <a-card>
           <a-descriptions bordered :column="1">
