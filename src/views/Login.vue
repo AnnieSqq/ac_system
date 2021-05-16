@@ -46,6 +46,7 @@
 
 <script>
 import { login, register } from '@/api'
+import http from '@/utils/http'
 import { storage } from '@/utils'
 export default {
   data() {
@@ -80,6 +81,17 @@ export default {
         this.$message.error(res.data.msg)
       }
     }
+  },
+  mounted() {
+    var url = '/api/testt?abc=2'
+    http
+      .get(url)
+      .then(response => {
+        // console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 </script>

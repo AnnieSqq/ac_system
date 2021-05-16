@@ -138,6 +138,11 @@ export async function getCourses(id) {
   })
   return res
 }
+/**
+ * 核验证书
+ * @param {*} query
+ * @returns
+ */
 export async function checkCerti(query) {
   const res = await http.get('/api/blockchain/CheckAcademic', { params: query })
   return res

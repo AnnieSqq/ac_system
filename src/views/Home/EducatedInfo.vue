@@ -80,7 +80,7 @@
                       <span>毕业</span>
                       <a-icon type="crown" />
                       <span>证书</span>
-                      <div>{{ item.eduInstitution }}</div>
+                      <div>{{ adminInfo.name  }}</div>
                     </div>
                   </a-col>
                 </a-row>
@@ -231,7 +231,6 @@ export default {
     },
     // 授予学位证书
     async confirmGiveDegree() {
-      console.log(this.degreeLevel)
       const res = await giveDegree({
         educatedId: this.educatedInfo.educatedId,
         educatorName: this.adminInfo.name,

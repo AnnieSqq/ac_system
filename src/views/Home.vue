@@ -1,7 +1,7 @@
 <template>
   <a-layout style="min-width: 1200px">
     <!-- 页头 -->
-    <a-layout-header id="header" class="header" style="z-index: 1">
+    <a-layout-header id="header" class="header" style="z-index: 2">
       <a-row>
         <a-col :span="12">
           <span style="font-weight: bold; font-size: 28px">

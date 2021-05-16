@@ -106,7 +106,6 @@ export default {
     // 核验证书
     checkCerti() {
       let academicId, diplomaId
-      console.log(this.type)
       if (this.type === 'edu') {
         academicId = this.certiInfo.id
       } else if (this.type === 'degree') {

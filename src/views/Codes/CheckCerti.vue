@@ -22,12 +22,12 @@
       title="证书不存在"
       sub-title="您核验的证书不存在"
     ></a-result>
-    <!-- <a-result
+    <a-result
       v-else
       status="404"
       title="404"
       sub-title="Sorry, the page you visited does not exist."
-    ></a-result> -->
+    ></a-result>
   </div>
 </template>
 

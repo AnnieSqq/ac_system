@@ -1,7 +1,7 @@
 <template>
   <div class="edu_list_outer">
     <!-- 搜索栏 -->
-    <!-- <a-row class="search_row" type="flex" justify="space-between">
+    <a-row class="search_row" type="flex" justify="space-between">
       <a-col :span="3"><a-input placeholder="姓名"></a-input></a-col>
       <a-col :span="5"><a-input placeholder="身份证号"></a-input></a-col>
       <a-col :span="3">
@@ -13,11 +13,11 @@
       <a-col :span="3"><a-button type="primary">检索</a-button></a-col>
       <a-col :span="3"><a-button type="default">取消</a-button></a-col>
       <a-col :span="6"></a-col>
-    </a-row> -->
-    <a-card
+    </a-row>
+    <!-- <a-card
       style="border: 1px solid rgb(235, 237, 240);"
       title="受教育者列表"
-    />
+    /> -->
     <!-- 统计栏 -->
     <a-row style="padding: 16px 0">
       <a-col :span="6"><a-tag color="blue">总计：{{eduList.length}}</a-tag></a-col>
@@ -35,8 +35,8 @@
     </div>
     <!-- 表格底栏 -->
     <a-row class="footer_row">
-      <!-- <a-col :span="3"><a-button type="primary">批量颁发</a-button></a-col>
-      <a-col :span="3"><a-button type="default">批量删除</a-button></a-col> -->
+      <a-col :span="3"><a-button type="primary">批量颁发</a-button></a-col>
+      <a-col :span="3"><a-button type="default">批量删除</a-button></a-col>
       <a-col :span="18">
         <a-pagination show-quick-jumper :default-current="2" :total="eduList.length" />
       </a-col>
