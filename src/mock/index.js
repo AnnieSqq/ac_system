@@ -135,7 +135,7 @@ Mock.mock(urls.getDegreeInfo, 'post', {
 Mock.mock(urls.getCourses, 'post', {
   code: 200,
   msg: '获取成功',
-  'data|5-20': [
+  data: [
     {
       courseId: '@integer(1, 100)',
       courseName: '高数',
